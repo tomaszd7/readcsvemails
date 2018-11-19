@@ -4,4 +4,4 @@ Create console file command
 Receive input csv file with emails.  
 Create output for valid and invalid emails and info.  
 
-Written in vanilla PHP (no framework).
+Written in vanilla PHP (no framework) functional programming.
