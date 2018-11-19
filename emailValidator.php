@@ -10,7 +10,9 @@ $error = validateRunningParams($argc, $argv);
 $fullFilename = $argv[1];
 $fileName = explode(".csv", $fullFilename)[0];
 
-$infoFileName = prepareFileName($fileName, "info", "txt");
+$prepareFileName = createFileNameFunction(new \DateTime());
+
+$infoFileName = $prepareFileName($fileName, "info", "txt");
 
 if ($error) {
     saveDataToFile((array)$error, $infoFileName);
@@ -27,11 +29,11 @@ $invalidEmails = array_diff($emails, $validEmails);
 
 // handling output
 // save valid emails
-$validEmailsFileName = prepareFileName($fileName, "valid");
+$validEmailsFileName = $prepareFileName($fileName, "valid");
 saveDataToFile($validEmails, $validEmailsFileName);
 
 // save invalid emails
-$inValidEmailsFileName = prepareFileName($fileName, "invalid");
+$inValidEmailsFileName = $prepareFileName($fileName, "invalid");
 saveDataToFile($invalidEmails, $inValidEmailsFileName);
 
 // save execution info
@@ -127,14 +129,21 @@ function saveDataToFile(array $data, string $filename, string $seperator = "\n")
 }
 
 /**
- * build filename
- * @param string $originalFileName
- * @param string $type
- * @param string $extenstion
- * @return type string
+ * build filename function with same time
+ * 
+ * @param \DateTime $time
+ * @return function
  */
-function prepareFileName(string $originalFileName, string $type, string $extention = "csv") {
-   $time = (new \DateTime());
-   $elements = [$time->format('Y-m-d'), $time->format('H:i:s'), $originalFileName, $type];
-   return implode("_", $elements) . "." . $extention;   
+function createFileNameFunction(\DateTime $time) {
+    /**
+     * build filename
+     * @param string $originalFileName
+     * @param string $type
+     * @param string $extention
+     * @return type string
+     */
+    return function (string $originalFileName, string $type, string $extention = "csv") use ($time) {
+       $elements = [$time->format('Y-m-d'), $time->format('H:i:s'), $originalFileName, $type];
+       return implode("_", $elements) . "." . $extention;   
+    };
 }
