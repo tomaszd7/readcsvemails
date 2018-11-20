@@ -1,0 +1,1 @@
+ERROR: Argument has to be a CSV file.
