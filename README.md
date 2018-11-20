@@ -1,7 +1,6 @@
 # readcsvemails
-This is recruiting task  
-Create console file command  
-Receive input csv file with emails.  
-Create output for valid and invalid emails and info.  
+Functional programming  
 
-Written in vanilla PHP (no framework).
+Based on functions  
+Used closure  
+Extra functionality to log or throw exceptions  
