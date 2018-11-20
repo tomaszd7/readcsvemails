@@ -1,7 +1,6 @@
 # readcsvemails
-This is recruiting task  
-Create console file command  
-Receive input csv file with emails.  
-Create output for valid and invalid emails and info.  
+Objective solution
+Using Factory to create Command
+Using Dependency Injection for Services (without interfaces)
 
-Written in vanilla PHP (no framework).
+Extra Functionality to throw or log errors of console parameter parsing
