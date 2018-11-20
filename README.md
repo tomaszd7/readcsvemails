@@ -1,6 +1,6 @@
 # readcsvemails
-Objective solution
-Using Factory to create Command
-Using Dependency Injection for Services (without interfaces)
+Objective solution  
+Using Factory to create Command  
+Using Dependency Injection for Services (without interfaces)  
 
-Extra Functionality to throw or log errors of console parameter parsing
+Extra Functionality to throw or log errors of console parameter parsing  
