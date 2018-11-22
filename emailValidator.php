@@ -6,5 +6,5 @@ use Factory\CommandFactory;
 
 $command = CommandFactory::getReadCsvEmailsCommandWithLogExceptions();
 
-$command->run($argc, $argv);
+$command->run($argv);
 

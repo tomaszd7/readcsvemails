@@ -8,7 +8,7 @@ namespace Rules;
  */
 class ConsoleRule implements RulesInterface{
     
-    public function isSatisfiedby():bool {
+    public function isSatisfiedby(array $params):bool {
         return "cli" === \php_sapi_name();
     }
     
