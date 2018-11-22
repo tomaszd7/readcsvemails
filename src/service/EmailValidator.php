@@ -10,7 +10,7 @@ namespace Service;
 class EmailValidator {
     
     public function validate(string $email) {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+        return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
             
 }

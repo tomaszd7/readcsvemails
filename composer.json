@@ -3,5 +3,8 @@
     
         "classmap": ["src"]
             
+    },
+    "require": {
+        "symfony/console": "^3.4"
     }
 }

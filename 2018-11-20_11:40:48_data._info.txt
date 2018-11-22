@@ -1,3 +1,0 @@
-Found 420 valid emails and saved into file 2018-11-20_11:40:48_data._valid.csv
-Found 1126 invalid emails and saved into file 2018-11-20_11:40:48_data._invalid.csv
-No errors found.

@@ -12,13 +12,14 @@ use Service\FileNamer;
  */
 class ReadCsvEmailsCommand extends Command {
 
-    public function run(int $paramsCount, array $params) {
-        $error = $this->scriptValidator->validate($paramsCount, $params);
+    public function run(array $params) {
+        $error = $this->scriptValidator->validate($params);
 
         if ($error) {
+            $this->infos[] = $error;
             $this->fileNamer->setDefaults('error');
             $this->fileWriter->save((array) $error, $this->fileNamer->getInfoName());
-            exit(1);
+            return;
         }
         
         $fileNameWithExtension = $params[1];
@@ -34,15 +35,15 @@ class ReadCsvEmailsCommand extends Command {
         $this->fileWriter->save($this->emailService->getInvalidEmails(), $this->fileNamer->getInvalidName());
                
         // save execution info
-        $texts = [];
-        $texts[] = sprintf("Found %d valid emails and saved into file %s",
+        // TODO this can be moved into seperate service 
+        
+        $this->infos[] = sprintf("Found %d valid emails and saved into file %s",
                 count($this->emailService->getValidEmails()), 
                 $this->fileNamer->getValidName());
-        $texts[] = sprintf("Found %d invalid emails and saved into file %s",
+        $this->infos[] = sprintf("Found %d invalid emails and saved into file %s",
                 count($this->emailService->getInvalidEmails()),
                 $this->fileNamer->getInvalidName());
-        $texts[] = 'No errors found.';
-        $this->fileWriter->save($texts, $this->fileNamer->getInfoName());
-                
+        $this->infos[] = 'No errors found.';
+        $this->fileWriter->save($this->infos, $this->fileNamer->getInfoName());
     }
 }

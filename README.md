@@ -1,6 +1,7 @@
 # readcsvemails
-Objective solution  
-Using Factory to create Command  
-Using Dependency Injection for Services (without interfaces)  
+Objective solution wrapped in Symfony Console Component
 
-Extra Functionality to throw or log errors of console parameter parsing  
+Takes src/Command and injects into Symfony Console Command
+
+Extra Functionality for Validation Rules 
+Added logs folder

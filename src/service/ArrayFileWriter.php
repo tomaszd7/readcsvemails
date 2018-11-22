@@ -16,8 +16,15 @@ class ArrayFileWriter {
      * @param string $seperator
      */
     public function save(array $data, string $filename, string $seperator = "\n") {
-        // using current workdir
-        file_put_contents($filename, implode($seperator, $data));
+        file_put_contents($this->getLogFolder() . $filename, implode($seperator, $data));
     }    
+    
+    /**
+     * log folder 
+     * @return string
+     */
+    protected function getLogFolder() {
+        return __DIR__ . "/../../logs/";
+    }
     
 }

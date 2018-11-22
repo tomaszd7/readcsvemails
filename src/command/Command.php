@@ -2,7 +2,7 @@
 
 namespace Command;
 
-use Service\ScriptValidator;
+use \Service\ScriptValidatorAbstract;
 use Service\FileNamer;
 use Service\CsvFileReader;
 use Service\ArrayFileWriter;
@@ -39,11 +39,13 @@ abstract class Command {
      * @var ScriptValidator
      */
     protected $scriptValidator;
+    
+    protected $infos = [];
 
     public function __construct(
-            // this should be in interfaces not final classes but I added it for IDE hinting
-            // and for simplification
-            ScriptValidator $scriptValidator,
+            // this should be in interfaces or abstracts not final classes 
+            // but I added it for IDE hinting and simplification
+            ScriptValidatorAbstract $scriptValidator,
             CsvFileReader $fileReader,
             ArrayFileWriter $fileWriter,
             FileNamer $fileNamer,
@@ -57,5 +59,9 @@ abstract class Command {
         $this->emailService = $emailService;
     }
 
-    public abstract function run(int $paramsCount, array $params);
+    public abstract function run(array $params);
+    
+    public function getInfos() {
+        return $this->infos;
+    }
 }
